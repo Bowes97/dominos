@@ -1,0 +1,20 @@
+<div class="container-fluid admin-panel">
+  <div class="d-flex align-items-start">
+    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <button class="nav-link" type="button" [routerLink]="[ 'admin-category' ]" routerLinkActive="active">Категорія
+      </button>
+      <button class="nav-link" type="button" [routerLink]="[ 'admin-products' ]" routerLinkActive="active">Продукти
+      </button>
+      <button class="nav-link" type="button" [routerLink]="[ 'admin-discounts' ]" routerLinkActive="active">Акції
+      </button>
+      <button class="nav-link" type="button" [routerLink]="[ 'admin-orders' ]" routerLinkActive="active">Замовлення
+      </button>
+      <button class="nav-link" type="button" [routerLink]="[ 'admin-feedbacks' ]" routerLinkActive="active">Відгуки
+      </button>
+      <button class="btn btn-outline-danger mt-3" (click)="signOut()" (click)="refresh()" type="button">Sign Out</button>
+    </div>
+    <div class="tab-content w-100">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

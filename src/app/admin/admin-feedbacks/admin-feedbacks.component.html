@@ -1,0 +1,30 @@
+<div class="input-group mb-3 mt-3">
+    <input type="text" class="form-control" name="person" [(ngModel)]="person">
+</div>
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Topic</th>
+            <th scope="col">Comment</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let f of adminFeeback | search:person; index as i">
+            <td>{{ i+1}}</td>
+            <td>{{ f.email }}</td>
+            <td>+380{{ f.phoneNumber }}</td>
+            <td>{{ f.topic }}</td>
+            <td>{{ f.comment }}</td>
+            <td>
+                <div class="actions">
+                    <button (click)="deleteFeedback(f)" class="btn btn-outline-dark">delete</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

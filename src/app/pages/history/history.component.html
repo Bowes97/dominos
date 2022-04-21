@@ -1,0 +1,28 @@
+<div class="header">
+    <div class="action">
+        <p [routerLink]="[ '/profile' ]">ПРОФІЛЬ</p>
+        <p [routerLink]="[ '/history' ]" style="color: black;">ІСТОРІЯ</p>
+        <p [routerLink]="[ '/feedback' ]">ЗАЛИШИТИ ВІДГУК</p>
+    </div>
+</div>
+<h1>Ваша історія замовлень</h1>
+<div class="main">
+    <table class="table table-sm mt-3 table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Номер замовлення</th>
+                <th scope="col">Адреса</th>
+                <th scope="col">Номер телефону</th>
+                <th scope="col">Ціна</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let h of historyTable">
+                <td>{{h.id}}</td>
+                <td>{{h.address | titlecase}}</td>
+                <td>+380{{h.phoneNumber}}</td>
+                <td>{{h.price | currency:'UAH':'symbol-narrow' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

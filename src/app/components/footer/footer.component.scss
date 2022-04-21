@@ -1,0 +1,225 @@
+footer{
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3em 2em 2em;
+    margin: 100px 0 0;
+}
+a{
+    cursor: pointer;
+}
+.link{
+    display: flex !important;
+    color: #fff;
+    padding: 0;
+    font-size: 32px;
+    z-index: 3;
+    text-align: justify;
+}
+.blocks{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    h1{
+        font-size: 24px;
+        font-family: "robotoBold";
+    }
+    a, p{
+        font-size: 15px;
+        font-family: "robotoLight";
+        color: rgb(141, 141, 141);
+        text-decoration: none;
+        line-height: 30px;
+        transition: color 0.2s;
+    }
+    a:hover{
+        color: #fff;
+    }
+}
+.logo{
+    display: flex;
+    img{
+        width: 70px;
+        height: 50px;
+    }
+    span{
+        font-family: "openSansBold";
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+    }
+}
+.column{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+.iconsApp{
+    a{
+        i{
+            font-size: 40px ;
+            cursor: pointer;
+            color: #fff;
+            margin: 0 5% 0 0 ;
+            transition: color 1s;
+        }
+        i:hover{
+            color: grey;
+        }
+    } 
+}
+.iconsPayments{
+    font-size: 40px;
+    i{
+        margin: 0 5% 0 0;
+    }
+}
+.iconsSocial{
+    color: grey;
+    a{
+        i{
+            font-size: 26px;
+            cursor: pointer;
+            margin: 0 5% 0 0;
+            transition: color 1s;
+        }
+        i:hover{
+            color: #fff;
+        }
+    }
+}
+.aboutMe{
+    margin: 10% 0;
+}
+.new{
+    display: none;
+}
+.max{
+    display: flex;
+}
+.min{
+    display: none;
+}
+@media screen and (max-width: 991px) {
+    .drop{
+        button{
+            color: #fff;
+            padding: 1.5em;
+            font-size: 32px;
+            z-index: 3;
+        }
+    }
+    .max{
+        display: none
+    }
+    .min{
+        display: flex;
+    }
+    .col{
+        width: 100%;
+    }
+    footer{
+        padding: 0;
+    }
+    .blocks{
+        width: 100%;
+        p{
+            text-align: center;
+        }
+        a{
+            display: none;
+        }
+        h1{
+            padding: 1.5em;
+            border-bottom: 1px solid grey;
+            color: grey;
+            font-size: 38px;
+        }
+        .important{
+            display: flex;
+        }
+        .iconsSocial{
+            width: 150px;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            a{
+                margin: 0px 0 20px 0;
+            }
+            i{
+                font-size: 46px;
+                margin: 0 20px;
+                color: #fff;
+            }
+        }
+        .iconsPayments{
+            width: 150px;
+            display: flex;
+            margin: auto;
+            justify-content: space-around;
+            i{
+                font-size: 46px;
+            }
+        }
+        .iconsApp{
+            display: flex;
+            width: 150px;
+            margin: auto;
+            justify-content: space-around;
+            i{
+                font-size: 46px;
+            }
+        }
+    }
+    .under{
+        display: none;
+    }
+    .new{
+        display: flex;
+        text-align: center;
+    }
+    .develop{
+        background-color: rgb(79, 79, 79);
+        height: 70px;
+        a{
+            font-size: 13.5px;
+            font-family: "robotoLight";
+            color: rgb(141, 141, 141);
+            text-decoration: none;
+            line-height: 30px;
+            transition: color 0.2s;
+            margin: 0; 
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        a:hover{
+            color: #fff;
+        }
+    }
+}
+@media screen and (max-width: 560px) {
+    .min{
+        h1{
+            font-size: 28px;
+        }
+    }
+    .iconsSocial{
+        width: 100px;
+        a{
+            i{
+                font-size: 24px;
+            }
+        }
+    }
+    .as{
+        font-size: 36px !important;
+    }
+}

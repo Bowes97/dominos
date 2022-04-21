@@ -1,0 +1,49 @@
+<div class="header">
+    <div class="action">
+        <p [routerLink]="[ '/profile' ]" style="color: black;">ПРОФІЛЬ</p>
+        <p [routerLink]="[ '/history' ]">ІСТОРІЯ</p>
+        <p [routerLink]="[ '/feedback' ]">ЗАЛИШИТИ ВІДГУК</p>
+    </div>
+</div>
+<form class="mt-3 info">
+    <div class="text">
+        <span class="mt-3">Ім'я</span>
+        <span class="mt-3">Прізвище</span>
+        <span class="mt-3">Email</span>
+        <span class="mt-3">Дата народження</span>
+        <span class="mt-3">Стать</span>
+        <span class="mt-3">Улюблена піца</span>
+    </div>
+    <div class="inputInfo">
+         <form [formGroup]="profileForm">
+            <input type="text" class="form-control mt-3" name="firstName" formControlName="firstName">
+            <input type="text" class="form-control mt-3" name="lastName" formControlName="lastName">
+            <input type="text" class="form-control mt-3" name="email" [value]="email" formControlName="email">
+            <div class="form-inline mt-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                            #d="ngbDatepicker" formControlName="dateOfBirth">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">Виберіть
+                                дату</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <select class="form-select mt-3" aria-label="Default select example">
+                <option value="2">Чоловік</option>
+                <option value="3">Жінка</option>
+            </select>
+            <select class="form-select mt-3" aria-label="Default select example">
+                <option value="2" *ngFor="let p of products" name="pizza">{{ p.name }}</option>
+            </select>
+         </form>
+    </div>
+</form>
+<div class="footer mt-3">
+    <form class="changeData">
+        <input type="button" value="Скасувати" (click)="initProfile()">
+        <input type="button" value="Зберегти" (click)="updateInfo(user)">
+    </form>
+</div>

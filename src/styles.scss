@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'openSans';
+    src: url(assets/fonts/OpenSans-Regular.ttf);
+}
+@font-face {
+    font-family: 'openSansBold';
+    src: url(assets/fonts/OpenSans-Bold.ttf);
+}
+@font-face {
+    font-family: 'openSansLight';
+    src: url(assets/fonts/OpenSans-Light.ttf);
+}
+@font-face{
+    font-family: "robotoLight";
+    src: url(assets/fonts/Roboto/Roboto-Light.ttf);
+}
+@font-face{
+    font-family: "robotoBold";
+    src: url(assets/fonts/Roboto/Roboto-Bold.ttf);
+}
+body{
+    margin: 0;
+    overflow: 0;
+    box-sizing: border-box;
+}
+@import '~ngx-toastr/toastr';
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

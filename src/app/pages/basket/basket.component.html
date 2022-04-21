@@ -1,0 +1,196 @@
+<div class="wrapper mt-3" *ngIf="basket.length > 0">
+    <div class="left">
+        <ng-container *ngIf="existPerson === true">
+            <form class="order" [formGroup]="personalOrderForm" (ngSubmit)="confirmOrderPersonal()">
+                <h1 class="titleOrder">Контакти</h1>
+                <div class="inputContact">
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Ім'я</mat-label>
+                        <input matInput placeholder="Ім'я" formControlName="nameP" name="nameP">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Телефон</mat-label>
+                        <input type="text" matInput placeholder="Телефон" formControlName="phoneNumberP"
+                            name="phoneNumberP" prefix="+380" mask="-00-000-00-00">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Email" name="emailP" formControlName="emailP">
+                    </mat-form-field>
+                </div>
+                <h1 class="titleOrder">Адреса</h1>
+                <div class="inputAddress">
+                    <mat-form-field class="example-full-width input2" appearance="fill">
+                        <mat-label>Місто</mat-label>
+                        <input matInput placeholder="Місто" formControlName="addressP" name="addressP">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input2" appearance="fill">
+                        <mat-label>Вулиця</mat-label>
+                        <input matInput placeholder="Вулиця">
+                    </mat-form-field>
+                </div>
+                <div class="inputAddress">
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Будинок</mat-label>
+                        <input matInput placeholder="Будинок">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Квартира</mat-label>
+                        <input matInput placeholder="Квартира">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Під'зд</mat-label>
+                        <input matInput placeholder="Під'зд">
+                    </mat-form-field>
+                </div>
+                <div class="inputAddress">
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Код</mat-label>
+                        <input matInput placeholder="Код">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Поверх</mat-label>
+                        <input matInput placeholder="Поверх">
+                    </mat-form-field>
+                    <mat-form-field style="visibility: hidden;" class="example-full-width input" appearance="fill">
+                        <mat-label>Поверх</mat-label>
+                        <input matInput placeholder="Поверх">
+                    </mat-form-field>
+                </div>
+                <div class="inputAddress" style="width: calc(10%/3 + 62%);">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Коментар</mat-label>
+                        <textarea matInput placeholder="Коментар" formControlName="commentP" name="commentP"></textarea>
+                    </mat-form-field>
+                </div>
+                <h1 class="titleOrder">Оплата</h1>
+                <mat-form-field appearance="fill">
+                    <mat-label>Тип Оплати</mat-label>
+                    <mat-select formControlName="paymentP">
+                        <mat-option #card (click)="changePayment(card)" name="payment" value="card">Карта</mat-option>
+                        <mat-option #cash (click)="changePayment(cash)" name="payment" value="cash">Готівка</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="conclsuion">
+                    <h3>Усього</h3>
+                    <h1>{{ total | number : '1.2-2'}} грн</h1>
+                    <input type="submit" [disabled]="orderForm.invalid" value="Замовити">
+                </div>
+            </form>
+        </ng-container>
+        <ng-container *ngIf="existPerson === false">
+            <form class="order" [formGroup]="orderForm" (ngSubmit)="confirmOrder()">
+                <h1 class="titleOrder">Контакти</h1>
+                <div class="inputContact">
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Ім'я</mat-label>
+                        <input matInput placeholder="Ім'я" formControlName="name" name="name">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Телефон</mat-label>
+                        <input matInput placeholder="Телефон" formControlName="phoneNumber" name="phoneNumber"
+                            prefix="+380" mask="-00-000-00-00">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Email" name="email" formControlName="email">
+                    </mat-form-field>
+                </div>
+                <h1 class="titleOrder">Адреса</h1>
+                <div class="inputAddress">
+                    <mat-form-field class="example-full-width input2" appearance="fill">
+                        <mat-label>Місто</mat-label>
+                        <input matInput placeholder="Місто" formControlName="address" name="address">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input2" appearance="fill">
+                        <mat-label>Вулиця</mat-label>
+                        <input matInput placeholder="Вулиця">
+                    </mat-form-field>
+                </div>
+                <div class="inputAddress">
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Будинок</mat-label>
+                        <input matInput placeholder="Будинок">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Квартира</mat-label>
+                        <input matInput placeholder="Квартира">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Під'зд</mat-label>
+                        <input matInput placeholder="Під'зд">
+                    </mat-form-field>
+                </div>
+                <div class="inputAddress">
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Код</mat-label>
+                        <input matInput placeholder="Код">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                        <mat-label>Поверх</mat-label>
+                        <input matInput placeholder="Поверх">
+                    </mat-form-field>
+                    <mat-form-field style="visibility: hidden;" class="example-full-width input" appearance="fill">
+                        <mat-label>Поверх</mat-label>
+                        <input matInput placeholder="Поверх">
+                    </mat-form-field>
+                </div>
+                <div class="inputAddress" style="width: calc(10%/3 + 62%);">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Коментар</mat-label>
+                        <textarea matInput placeholder="Коментар" formControlName="comment" name="comment"></textarea>
+                    </mat-form-field>
+                </div>
+                <h1 class="titleOrder">Оплата</h1>
+                <mat-form-field appearance="fill">
+                    <mat-label>Тип Оплати</mat-label>
+                    <mat-select formControlName="payment">
+                        <mat-option #card (click)="changePayment(card)" name="payment" value="card">Карта</mat-option>
+                        <mat-option #cash (click)="changePayment(cash)" name="payment" value="cash">Готівка</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="conclsuion">
+                    <h3>Усього</h3>
+                    <h1>{{ total | number : '1.2-2'}} грн</h1>
+                    <input type="submit" [disabled]="orderForm.invalid" value="Замовити">
+                </div>
+            </form>
+        </ng-container>
+    </div>
+    <div class="right">
+        <div class="order">
+            <h1 class="titleOrder">Ваше замовлення</h1>
+            <div class="products mt-3" *ngFor="let b of basket">
+                <div class="image">
+                    <img style="width: 30px;" [src]="b.imagePath" alt="">
+                </div>
+                <div class="information">
+                    <div class="title">
+                        <p>{{b.name}}</p>
+                        <i class="fas fa-times exit" (click)="deleteProduct(b)"></i>
+                    </div>
+                    <p class="description">{{b.description}}</p>
+                    <div class="price">
+                        <p style="margin: 0;">{{b.price * b.count | number : '1.2-2'}} грн</p>
+                        <div class="count">
+                            <span (click)="removeProduct(b)" (click)="changeCounts(b, false)"
+                                (click)="addProduct(b)">-</span>
+                            <p>{{b.count | number : '2.0-0'}}</p>
+                            <span (click)="changeCounts(b, true)" (click)="addProduct(b)">+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="total">
+                <h1>До оплати</h1>
+                <h1>{{total | number : '1.2-2'}} грн</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper" *ngIf="basket.length === 0">
+    <div class="onMain">
+        <h1>Кошик порожній</h1>
+        <a [routerLink]="[ '/' ]">На головну</a>
+    </div>
+</div>

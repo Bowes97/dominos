@@ -1,0 +1,29 @@
+<div class="input-group mb-3 mt-3">
+    <input type="text" class="form-control" name="person" [(ngModel)]="person">
+</div>
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of adminOrders | search:person; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ order.name }}</td>
+            <td>{{ order.price | currency:'UAH':'symbol-narrow'}}</td>
+            <td [ngStyle]="{'color': order.status ? 'green' : 'red'}">{{ order.status }} </td>
+            <td>
+                <div class="actions">
+                    <button class="btn btn-outline-dark" (click)="deleteOrder(order)">delete</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

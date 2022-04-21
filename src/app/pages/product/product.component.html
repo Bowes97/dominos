@@ -1,0 +1,98 @@
+<div class="search">
+    <div class="btn-group" dropdown>
+        <button id="button-animated" dropdownToggle type="button" class=" dropdown-toggle"
+            aria-controls="dropdown-animated"> Сортування<span class="caret"></span>
+        </button>
+        <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
+            <li role="menuitem" (click)="lowPrice()"><span class="dropdown-item pointer">Ціна низька-висока</span></li>
+            <li role="menuitem" (click)="highPrice()"><span class="dropdown-item pointer">Ціна висока-низька</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="ProductContainer">
+    <div class="block" *ngFor="let product of products">
+        <div class="box" (click)="checkName(product)">
+            <div class="image">
+                <img [src]="product.imagePath" alt="">
+                <ng-container *ngIf="product.size === 0">
+                    <span>{{ product.weight }} г</span>
+                </ng-container>
+                <ng-container *ngIf="product.size === 1">
+                    <span>{{ product.weight * 1.4 | number : '1.0-0'}} г</span>
+                </ng-container>
+                <ng-container *ngIf="product.size === 2">
+                    <span>{{ product.weight * 1.8 | number : '1.0-0'}} г</span>
+                </ng-container>        
+            </div>
+            <div class="description">
+                <div class="title">
+                    <a [routerLink]="[ '/menu/', product.category.path ,product.path ]">{{ product.name }}</a>
+                </div>
+                <div class="product-details">
+                    <p class="productDes">{{ product.description }}</p>
+                    <a [routerLink]="[ '/menu/', product.category.path ,product.path ]">Замінити інгредієнти</a>
+                </div>
+                <div class="size">
+                    <ng-container *ngIf="menu === 'pizza'">
+                        <div class="pizzaSize" (click)="onButtonGroupClick($event)">
+                            <button (click)="setZero(product)" [ngClass]="{'active': true}">Маленька</button>
+                            <button (click)="setOne(product)">Середня</button>
+                            <button (click)="setTwo(product)">Велика</button>
+                        </div>
+                        <div class="typePizza" (click)="onButtonGroupClick($event)">
+                            <button [ngClass]="{'active': true}">Стандарт</button>
+                            <button [disabled]='product.size === 1 ? false : product.size === 2 ? false : true'>Тонке</button>
+                            <button [disabled]='product.size === 1 ? false : product.size === 2 ? false : true'>Філадельфія</button>
+                            <button [disabled]='product.size === 1 ? false : product.size === 2 ? false : true'>Борт Хот-Дог</button>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="menu === 'drinks'">
+                        <button class="mt-3" style="width: 100%; border: 0ch;" [ngClass]="{'active': true}">500
+                            мл</button>
+                    </ng-container>
+                    <ng-container *ngIf="menu === 'snack'">
+                        <div class="pizzaSize" (click)="onButtonGroupClick($event)">
+                            <button [ngClass]="{'active': true}">Cтандарт</button>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="menu === 'desserts'">
+                        <div class="pizzaSize" (click)="onButtonGroupClick($event)">
+                            <button [ngClass]="{'active': true}">Cтандарт</button>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="price">
+                    <div class="valuePrice">
+                        <ng-container *ngIf="product.size === 0">
+                            <span>{{ product.price }} грн</span>
+                        </ng-container>
+                        <ng-container *ngIf="product.size === 1">
+                            <span>{{ product.price * 1.2}} грн</span>
+                        </ng-container>
+                        <ng-container *ngIf="product.size === 2">
+                            <span>{{ product.price * 1.4}} грн</span>
+                        </ng-container>
+                    </div>
+                    <div class="btnPrice">
+                        <ng-container *ngIf="product.bought === 1">
+                            <span class="productCount lessProduct" (click)="changeCount(product, false)"
+                                (click)="addToBasket(product)" (click)="boughtZero(product)">-</span>
+                            <input type="text" style="width: 35px; text-align: center;"
+                                [value]="product.count | number : '2.0-0' ">
+                            <span class="productCount moreProduct" (click)="changeCount(product, true)"
+                                (click)="addToBasket(product)">+</span>
+                        </ng-container>
+                        <ng-container *ngIf="product.bought === 0" >
+                            <p  style="cursor: pointer;" (click)="plus(product)" (click)="addToBasket(product)"
+                                (click)="existBasket()" (click)="boughtOne(product)">В Кошик</p>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="basket none" [routerLink]="[ '/basket' ]">
+    <i class="fas fa-shopping-basket"></i>
+</div>

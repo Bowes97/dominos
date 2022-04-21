@@ -1,0 +1,78 @@
+<div class="input-group mb-3 mt-3">
+  <input type="text" class="form-control" name="person" [(ngModel)]="person">
+  <button data-bs-toggle="modal" data-bs-target="#categoryModal" class="btn btn-outline-secondary" type="button">Create
+  </button>
+</div>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Path</th>
+      <th scope="col">Image</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of adminCategories | search:person; index as i">
+      <td>{{ i + 1 }}</td>
+      <td>{{ category.name }}</td>
+      <td>{{ category.path }}</td>
+      <td>
+        <img [src]="category.imagePath" alt="" width="100px">
+      </td>
+      <td>
+        <div class="actions">
+          <button (click)="editCategory(category)" data-bs-toggle="modal" data-bs-target="#categoryModal"
+            class="btn btn-outline-dark mx-3">edit
+          </button>
+          <button (click)="deleteCategory(category)" class="btn btn-outline-dark">delete
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form [formGroup]="categoryForm" class="modal-content" (ngSubmit)="saveCategory()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="categoryModalLabel">Add category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+        <div class="mb-3">
+          <label for="path" class="form-label">Path</label>
+          <input type="text" class="form-control" id="path" formControlName="path">
+        </div>
+        <ng-container *ngIf="!isUploaded">
+          <div class="mb-3">
+            <input type="text" formControlName="imagePath" [hidden]="true">
+            <label for="formFile" class="form-label">Default image</label>
+            <input class="form-control" type="file" id="formFile" (change)="upload($event)">
+            <div class="progress mt-3">
+              <div class="progress-bar bg-success" role="progressbar" [style.width.%]="uploadPercent" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="isUploaded">
+          <div class="photoAdded">
+            <p style="color: green;">Photo added</p>
+            <p style="color: crimson; cursor: pointer;" (click)="deleteImage()">Delete</p>
+          </div>
+        </ng-container>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #close>Close</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"
+          [disabled]="categoryForm.invalid">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

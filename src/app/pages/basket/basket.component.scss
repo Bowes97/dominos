@@ -1,0 +1,205 @@
+.wrapper{
+    display: flex;
+}
+.left, .right{
+    width: 50%;
+}
+.products{
+    display: flex;
+}
+.image{
+    width: 30%;
+    img{
+        width: 85% !important;
+        border-radius: 20px;
+        border: 2px solid #e31837;
+    }
+}
+.information{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    .description{
+        color: rgb(79, 79, 79);
+        font-size: 11px;
+    }
+}
+.price{
+    display: flex;
+    justify-content: space-between;
+    p{
+        font-weight: 700;
+        font-size: 18px;
+        font-family: 'openSans';
+    }
+}
+.count{
+    display: flex;
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e31837;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color: #fff;
+    p{
+        margin: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    span{
+        text-align: center;
+        border: 1px solid rgb(227, 24, 55);
+        width: 25px;
+        border-radius: 25px;
+        cursor: pointer;
+    }
+    span:hover{
+        background-color: rgb(191, 20, 46);
+    }
+}
+.right{
+    h1{
+        font-size: 18px;
+        font-family: 'openSans';
+        font-weight: 600;
+    }
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    p{
+        color: #222;
+        font-size: 14px;
+    }
+}
+.exit{
+    cursor: pointer;
+}
+.exit:hover{
+    color: crimson;
+}
+.total{
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'openSans';
+}
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+  
+.example-full-width {
+    width: 100%;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    color: crimson !important;
+}
+::ng-deep.mat-form-field-underline {
+    background-color: crimson !important;
+} 
+::ng-deep.mat-form-field-ripple {
+    background-color: crimson !important;;
+}
+.order{
+    width: 80%;
+    margin: auto;
+}
+.inputContact, .inputAddress{
+    display: flex;
+    justify-content: space-between;
+}
+.input{
+    width: 30%;
+}
+.input2{
+    width: 49%;
+}
+.titleOrder{
+    font-size: 18px;
+    color: #222;
+    font-weight: 600;
+}
+.conclsuion{
+    width: 30%;
+    margin: auto;
+    h3{
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        font-family: 'openSans';
+    }
+    h1{
+        text-align: center;
+        font-family: 'openSans';
+        font-size: 28px;
+        font-weight: 700;
+    }
+    input{
+        border: 0;
+        width: 100%;
+        background-color: #e31837;
+        color: #fff;
+        height: 50px;
+        font-size: 18px;
+        border-radius: 15px;
+        width: 100%;
+        font-family: 'openSans';
+        cursor: pointer;
+    }
+}
+.onMain{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1{
+        font-family: 'openSans';
+        font-size: 32px;
+        font-weight: 700;
+    }
+    a{
+        text-decoration: none;
+        font-family: 'openSans';
+        color: crimson;
+        font-weight: 600;
+    }
+}
+@media screen and (max-width: 992px){
+    .left, .right {
+        width: 100%;
+    }
+    .wrapper{
+        flex-direction: column-reverse;
+    }
+    .total{
+        width: 100%;
+    }
+    .products{
+        justify-content: space-between;
+    }
+    .information{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 747px){
+    .conclsuion{
+        width: 60%;
+    }
+    .count{
+        width: 33%;
+    }
+}

@@ -1,0 +1,199 @@
+<header>
+    <div class="top">
+        <div class="navBarTop">
+            <div class="left">
+                <div class="phoneNumber">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>044 222 11 11</span>
+                </div>
+                <div class="location" style="display: none;">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span style="display: none;">Київ</span>
+                </div>
+            </div>
+            <div class="entry">
+                <div class="btn-group" style="margin: 0 0 20px 0;" dropdown *ngIf="isUserLogin">
+                    <button id="button-animated" dropdownToggle type="button" class=" dropdown-toggle"
+                        aria-controls="dropdown-animated">Кабінет<span class="caret"></span>
+                    </button>
+                    <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu"
+                        aria-labelledby="button-animated">
+                        <li role="menuitem"><span class="dropdown-item" [routerLink]="[ '/profile' ]">Профіль</span>
+                        </li>
+                        <li role="menuitem"><span class="dropdown-item" [routerLink]="[ '/feedback' ]">Залишити
+                                відгук</span></li>
+                        <li role="menuitem"><span class="dropdown-item" (click)="signOut()"
+                                (click)="refresh()">Вихід</span>
+                        </li>
+                    </ul>
+                </div>
+                <p *ngIf="isAdminLogin" [routerLink]="[ '/admin' ]" routerLinkActive="active">Адмін</p>
+                <p *ngIf="!isAdminLogin && !isUserLogin" data-bs-toggle="modal" href="#exampleModalToggle"
+                    routerLinkActive="active">Увійти</p>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="navBarBottom">
+            <div class="logo" [routerLink]="[ '/' ]" style="cursor: pointer;">
+                <img src="https://1000logos.net/wp-content/uploads/2017/08/Domino%E2%80%99s-Logo.png" alt="">
+                <a routerLinkActive="active">Domino's Pizza</a>
+            </div>
+            <div class="nav">
+                <a [routerLink]="[ '/discounts' ]">Акції</a>
+                <a [routerLink]="[ '/menu/pizza' ]">Піца</a>
+                <a [routerLink]="[ '/menu/drinks' ]">Напої</a>
+                <a [routerLink]="[ '/menu/snack' ]">Сайди</a>
+                <a [routerLink]="[ '/menu/desserts' ]">Десерти</a>
+                <ng-container *ngIf="!backetEmpty">
+                    <div class="backet">
+                        <div class="count">
+                            <p>{{count | number : '2.0-0' }}</p>
+                            <i class="fab fa-bitbucket"></i>
+                        </div>
+                        <div class="order" style="cursor: no-drop;">
+                            <p>Замовити</p>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="backetEmpty">
+                    <div class="backet basket" style="width: 250px;">
+                        <div class="count">
+                            <p>{{count | number : '2.0-0' }}</p>
+                            <i class="fab fa-bitbucket"></i>
+                        </div>
+                        <div class="priceProducts">
+                            <p>{{ total | number : '1.2-2' }} грн</p>
+                        </div>
+                        <div class="order" style="cursor: pointer;" [routerLink]="[ '/basket' ]">
+                            <p>Замовити</p>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <div class="menu">
+                <div class="hamburger-menu">
+                    <input id="menu__toggle" type="checkbox" />
+                    <label for="menu__toggle">
+                        <span><i class="fas fa-bars"></i></span>
+                    </label>
+                    <ul class="menu__box" style="padding: 0%;">
+                        <div class="header-menu">
+                            <div class="exitMenu">
+                                <div class="imageMenu">
+                                    <img src="https://1000logos.net/wp-content/uploads/2017/08/Domino%E2%80%99s-Logo.png"
+                                        alt="">
+                                </div>
+                                <div class="location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span></span>
+                                </div>
+                                <div class="buttonExit">
+                                    <input id="menu__toggle" type="checkbox" />
+                                    <label for="menu__toggle">
+                                        <span><i class="fas fa-times"></i></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="menuEntry">
+                                <div class="mobileMenu">
+                                    <p *ngIf="isUserLogin" [routerLink]="[ '/profile' ]" style="color: #ffffff;">Кабінет
+                                    </p>
+                                    <p *ngIf="isAdminLogin" [routerLink]="[ '/admin' ]" routerLinkActive="active"
+                                        style="color: #ffffff;" (click)="refresh()">Адмін</p>
+                                    <p *ngIf="!isAdminLogin && !isUserLogin" data-bs-toggle="modal"
+                                        href="#exampleModalToggle" routerLinkActive="active" style="color: #ffffff;">
+                                        Увійти</p>
+                                    <p *ngIf="isUserLogin" style="color: #ffffff;" (click)="signOut()"
+                                        (click)="refresh()">Вихід</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="justify-menu">
+                            <li>
+                                <i class="fas fa-percent"></i>
+                                <a class="menu__item" [routerLink]="[ '/discounts' ]">Акції</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-pizza-slice"></i>
+                                <a class="menu__item" [routerLink]="[ '/menu/pizza' ]">Піца</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-glass-whiskey"></i>
+                                <a class="menu__item" [routerLink]="[ '/menu/drinks' ]">Напої</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-drumstick-bite"></i>
+                                <a class="menu__item" [routerLink]="[ '/menu/snack' ]">Сайди</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-ice-cream"></i>
+                                <a class="menu__item" [routerLink]="[ '/menu/desserts' ]">Десерти</a>
+                            </li>
+                        </div>
+                        <div class="menu_info">
+                            <a>Новини</a>
+                            <a style="text-decoration: none;" href="https://biz.dominos.ua/">Франчайзінг</a>
+                            <a style="text-decoration: none;" [routerLink]="[ '/' ]">Domino's Club</a>
+                            <a style="text-decoration: none;" [routerLink]="[ '/feedback' ]">Залишити відгук</a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content modalEntry" [formGroup]="registerForm">
+            <div class="headerModal">
+                <h3>Реєстрація</h3>
+                <button type="button" class="btn-close closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="bodyModal">
+                <div class="mb-3">
+                    <input formControlName="email" type="email" class="form-control" id="emailLogin"
+                        placeholder="Логін">
+                </div>
+                <div class="mb-3">
+                    <input formControlName="password" type="password" class="form-control" id="passwordLogin"
+                        placeholder="Пароль">
+                </div>
+                <div class="mb-3">
+                    <input formControlName="oneMorePassword" type="password" class="form-control"
+                        id="passwordLoginSecond" placeholder="Повторіть ваш пароль">
+                </div>
+            </div>
+            <div class="footerModal">
+                <button class="btn btn-danger btn-header" #close (click)="register()" type="submit">Реєстрація</button>
+                <p class="danger text-danger" data-bs-toggle="modal" href="#exampleModalToggle">Повернутися до входу</p>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content modalEntry" [formGroup]="loginForm">
+            <div class="headerModal">
+                <h3>Увійти</h3>
+                <button type="button" class="btn-close closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="bodyModal">
+                <div class="mb-3">
+                    <input formControlName="emailLogin" type="email" class="form-control" placeholder="Логін">
+                </div>
+                <div class="mb-3">
+                    <input formControlName="passwordLogin" type="password" class="form-control" placeholder="Пароль">
+                </div>
+            </div>
+            <div class="footerModal">
+                <button type="submit" class="btn btn-danger btn-header" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="login()">Увійти</button>
+                <button class="btn btn-danger btn-footer" data-bs-toggle="modal"
+                    href="#exampleModalToggle2">Реєстрація</button>
+            </div>
+        </form>
+    </div>
+</div>

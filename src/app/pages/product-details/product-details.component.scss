@@ -1,0 +1,152 @@
+.additional{
+    width: 90%;
+    margin: auto;
+}
+.info{
+    display: flex;
+}
+.image{
+    width: 70%;
+    img{
+        width: 100%;
+        height: 500px;
+    }
+}
+.price{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0;
+    p{
+        height: 40px;
+        text-align: center;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        font-family: "openSansBold";
+        font-size: 20px;
+    } 
+    span{
+        font-size: 10px;
+        margin: 0 3px;
+    }
+    button{
+        border: 0;
+        border-radius: 5px;
+        background-color: #d51a1e;
+        color: #fff;
+        transition: all 0.5s;
+        min-width: 0;
+        padding-left: 0.8em;
+        padding-right: 0.8em;
+        font-family: "openSansBold";
+    }
+    button:hover{
+        background-color: #8f0406;
+    }
+}
+.description{
+    margin: 100px 0 ;
+    width: 20%;
+}
+.otherProducts{
+    p{
+        font-size: 1.85vw;
+        font-family: "openSansLight";
+    }
+}
+.block{
+    display: flex;
+    margin: 30px 0;
+}
+.products{
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    p{
+        font-family: "robotoBold";
+    }
+}
+.pizzaBlock:first-child{
+    margin: 0 20px 0 0;
+}
+.pizzaBlock{
+    margin: 0 20px;
+}
+.none{
+    display: none;
+}
+.basket{
+    position: fixed;
+    top: 90%;
+    left: 70%;
+    i{
+        cursor: pointer;
+        font-size: 24px;
+        color: crimson;
+        border: 1px solid crimson;
+        padding: 1em;
+        border-radius: 50%;
+        background-color: #f8f8f8;
+    }
+}
+.carousel{
+    display: none;
+}
+@media screen and (max-width: 992px){
+    .description, .image{
+        width: 50%;
+    }
+    .otherProducts{
+        p{
+            font-size: 3.85vw;
+        }
+    }
+    .products{
+        width: 20%;
+    }
+}
+@media screen and (max-width: 747px){
+    .info{
+        flex-direction: column;
+        .description, .image{
+            width: 100%;
+            img{
+                width: 100% !important;
+            }
+        }
+        .description{
+            margin: 20px 0;
+            .price{
+                justify-content: space-around;
+                margin: 20px 0;
+            }
+        }
+    }
+    .block{
+        flex-wrap: wrap;
+    }
+    .products{
+        width: 48%;
+    }
+    .pizzaBlock{
+        margin: 0 1% !important;
+        img{
+            border: 1px solid black;
+            border-radius: 5px !important;
+        }
+    }
+    h2{
+        text-align: center;
+    }
+    .otherProducts{
+        p{
+            font-size: 24px;
+        }
+    }
+}
+@media screen and (max-width: 480px) {
+    .none{
+        display: flex;
+    }
+}

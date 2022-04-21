@@ -1,0 +1,82 @@
+<ng-container *ngIf="category === 'p'">
+    <div class="additional">
+        <div class="info mt-3" *ngFor="let product of currentProduct">
+            <div class="image">
+                <img [src]="product.imagePath" alt="" style="border-radius: 20px; height: 80%; width: 90%;">
+            </div>
+            <div class="description">
+                <h2>{{product.name}}</h2>
+                <p>{{product.description}}</p>
+                <div class="price">
+                    <p><span>від</span> {{product.price}} <span>грн</span></p>
+                    <button type="button" (click)="changeCount(product)" (click)="addToBasket(product)">Додати в
+                        кошик</button>
+                </div>
+            </div>
+        </div>
+        <div class="otherProducts" *ngIf="secondLetter === 'i' ">
+            <p>Інші продукти</p>
+            <div class="block">
+                <div class="products pizzaBlock" *ngFor="let pizza of arrPizza"
+                    [routerLink]="[ '/menu/', pizza.category.path, pizza.path ]" style="cursor: pointer;"
+                    (click)="reload()">
+                    <img style="width: 100%; height: 100px; border-radius: 20px;" [src]="pizza.imagePath" alt="">
+                    <p style="font-size: 14px; text-align: center;">{{pizza.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="category != 'p' ">
+    <div class="additional">
+        <div class="info" *ngFor="let product of currentProduct">
+            <div class="image">
+                <img [src]="product.imagePath" alt="">
+            </div>
+            <div class="description">
+                <h2>{{product.name}}</h2>
+                <div class="price">
+                    <p><span>від</span> {{product.price}} <span>грн</span></p>
+                    <button type="button" (click)="changeCount(product)" (click)="addToBasket(product)">Додати в
+                        кошик</button>
+                </div>
+            </div>
+        </div>
+        <div class="otherProducts">
+            <p>Інші продукти</p>
+            <ng-container *ngIf="secondLetter === 'e' ">
+                <div class="block">
+                    <div class="products" *ngFor="let desserts of arrdesserts"
+                        [routerLink]="[ '/menu/', desserts.category.path, desserts.path ]" style="cursor: pointer;"
+                        (click)="reload()">
+                        <img style="width: 100%; height: 100px" [src]="desserts.imagePath" alt="">
+                        <p style="font-size: 14px; text-align: center;">{{desserts.name}}</p>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="secondLetter === 'n' ">
+                <div class="block">
+                    <div class="products" *ngFor="let snack of arrSnack"
+                        [routerLink]="[ '/menu/', snack.category.path, snack.path ]" style="cursor: pointer;"
+                        (click)="reload()">
+                        <img style="width: 100%; height: 100px" [src]="snack.imagePath" alt="">
+                        <p style="font-size: 14px; text-align: center;">{{snack.name}}</p>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="secondLetter === 'r' ">
+                <div class="block">
+                    <div class="products" *ngFor="let drink of arrDrinks"
+                        [routerLink]="[ '/menu/', drink.category.path, drink.path ]" style="cursor: pointer;"
+                        (click)="reload()">
+                        <img style="width: 100%; height: 100px" [src]="drink.imagePath" alt="">
+                        <p style="font-size: 14px; text-align: center;">{{drink.name}}</p>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>
+<div class="basket none" [routerLink]="[ '/basket' ]">
+    <i class="fas fa-shopping-basket"></i>
+</div>

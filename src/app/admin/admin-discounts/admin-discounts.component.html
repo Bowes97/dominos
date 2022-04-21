@@ -1,0 +1,84 @@
+<div class="input-group mb-3 mt-3">
+    <input type="text" class="form-control" name="person" [(ngModel)]="person">
+    <button data-bs-toggle="modal" data-bs-target="#discountModal" class="btn btn-outline-secondary"
+        type="button">Create</button>
+</div>
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">path</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image</th>
+            <th scope="col">Time</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of adminDiscounts | search:person; index as i">
+            <td>{{ i+1}}</td>
+            <td>{{ d.path }}</td>
+            <td>{{ d.title }}</td>
+            <td>{{ d.description | slice:0:50 }} ...</td>
+            <td>
+                <img [src]="d.imagePath" alt="" width="100px">
+            </td>
+            <td>{{ d.time.valueOf() | date:'yyyy/MM/dd h:mm:ss a'}}</td>
+            <td>
+                <div class="actions">
+                    <button (click)="editDiscount(d)" data-bs-toggle="modal" data-bs-target="#discountModal"
+                        class="btn btn-outline-dark mx-3">edit</button>
+                    <button (click)="deleteDiscount(d)" class="btn btn-outline-dark">delete</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="modal fade" id="discountModal" tabindex="-1" aria-labelledby="discountModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form [formGroup]="discountForm" class="modal-content" (ngSubmit)="saveDiscount()">
+            <div class="modal-header">
+                <h5 class="modal-title" id="discountModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="path" class="form-label mt-3">Path</label>
+                    <input type="text" formControlName="path" class="form-control" id="path">
+                    <label for="title" class="form-label mt-3">Title</label>
+                    <input type="text" formControlName="title" class="form-control" id="title">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea formControlName="description" class="form-control" id="description" rows="3"></textarea>
+                    <label for="datepicker" class="form-label mt-3">Datepicker</label>
+                    <div class="col-xs-12 col-12 col-md-4 form-group mb-3 Datepicker">
+                        <input type="text" id="datepicker" class="form-control" bsDatepicker
+                            [bsConfig]="{ isAnimated: true }" formControlName="time">
+                    </div>
+                    <input type="text" formControlName="imagePath" [hidden]="true">
+                    <ng-container *ngIf="!isUploaded">
+                        <div class="mb-3">
+                            <input type="text" formControlName="imagePath" [hidden]="true">
+                            <input class="form-control" type="file" id="formFile" (change)="upload($event)">
+                            <div class="progress mt-3">
+                                <div class="progress-bar bg-success" role="progressbar" [style.width.%]="uploadPercent"
+                                    aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="isUploaded">
+                        <div class="photoAdded">
+                            <p style="color: green;">Photo added</p>
+                            <p style="color: crimson; cursor: pointer;" (click)="deleteImage()">Delete</p>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #close>Close</button>
+                <button type="submit" class="btn btn-primary" [disabled]="discountForm.invalid">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
